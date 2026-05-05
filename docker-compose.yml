@@ -10,6 +10,8 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
+      - GF_USERS_DEFAULT_THEME=dark
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/fitlife-overview.json
     restart: unless-stopped
 
   vault:
@@ -54,6 +56,25 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
     restart: unless-stopped
 
+  identity:
+    build:
+      context: ../Identity
+      dockerfile: FitLife.Identity.Api/Dockerfile
+    container_name: fitlife_identity
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-identity
+      - Jwt__Issuer=fitlife-identity
+      - Jwt__Audience=fitlife
+      - Jwt__ExpiryMinutes=60
+      - Jwt__KeyId=fitlife-key-1
+      - Jwt__RsaPrivateKey=${IDENTITY_JWT_RSA_PRIVATE_KEY}
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
   nginx:
     image: nginx:alpine
     container_name: fitlife_nginx
@@ -61,6 +82,8 @@ services:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - identity
     restart: unless-stopped
 
   loki:
@@ -72,6 +95,17 @@ services:
       - loki_data:/loki
       - ./loki/config.yml:/etc/loki/config.yml
     command: -config.file=/etc/loki/config.yml
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: fitlife_promtail
+    volumes:
+      - ./promtail/config.yml:/etc/promtail/config.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/promtail/config.yml
+    depends_on:
+      - loki
     restart: unless-stopped
 
 volumes:
