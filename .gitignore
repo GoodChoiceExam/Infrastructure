@@ -1,1 +1,9 @@
 .env
+.env.local
+.DS_Store
+.vscode/
+.idea/
+*.log
+loki/chunks/
+loki/rules/
+vault/data/
