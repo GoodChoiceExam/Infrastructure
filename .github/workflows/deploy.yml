@@ -1,0 +1,20 @@
+name: Deploy to Server
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull newest images
+        run: wsl docker compose pull
+
+      - name: Restart containers
+        run: wsl docker compose --env-file .env up -d --remove-orphans
