@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Pull newest images
-        run: wsl docker compose pull
+        run: docker compose pull
 
       - name: Restart containers
-        run: wsl docker compose --env-file .env up -d --remove-orphans
+        run: docker compose --env-file .env up -d --remove-orphans
