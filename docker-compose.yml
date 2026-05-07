@@ -33,6 +33,7 @@ services:
       - "8200:8200"
     volumes:
       - vault_data:/vault/data
+    user: root
     cap_add:
       - IPC_LOCK
     environment:
