@@ -38,6 +38,7 @@ services:
       - IPC_LOCK
     environment:
       - VAULT_ADDR=http://0.0.0.0:8200
+      - SKIP_SETCAP=true
     command: vault server -config=/vault/config/vault.hcl
     restart: unless-stopped
 
