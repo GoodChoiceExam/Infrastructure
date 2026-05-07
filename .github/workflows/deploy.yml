@@ -7,29 +7,14 @@ on:
 
 jobs:
   deploy:
-    name: SSH Deploy
-    runs-on: ubuntu-latest
+    name: Deploy
+    runs-on: self-hosted
 
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            wsl bash -c "
-              set -e
+      - uses: actions/checkout@v4
 
-              INFRA_DIR=~/fitlife-infra
+      - name: Pull newest images
+        run: wsl docker compose pull
 
-              if [ ! -d \"\$INFRA_DIR\" ]; then
-                git clone https://github.com/GoodChoiceExam/Infrastructure.git \"\$INFRA_DIR\"
-              fi
-
-              cd \"\$INFRA_DIR\"
-              git pull
-
-              docker compose pull
-              docker compose up -d --remove-orphans
-            "
+      - name: Restart containers
+        run: wsl docker compose --env-file .env up -d --remove-orphans
