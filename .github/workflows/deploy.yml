@@ -1,0 +1,35 @@
+name: Deploy to Server
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+
+jobs:
+  deploy:
+    name: SSH Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            wsl bash -c "
+              set -e
+
+              INFRA_DIR=~/fitlife-infra
+
+              if [ ! -d \"\$INFRA_DIR\" ]; then
+                git clone https://github.com/GoodChoiceExam/Infrastructure.git \"\$INFRA_DIR\"
+              fi
+
+              cd \"\$INFRA_DIR\"
+              git pull
+
+              docker compose pull
+              docker compose up -d --remove-orphans
+            "

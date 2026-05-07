@@ -1,0 +1,78 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# TEMPLATE — kopier denne fil til .github/workflows/ci-cd.yml i hvert
+# microservice repository og tilpas de tre værdier markeret med TODO.
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: CI/CD
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+env:
+  # TODO 1: Skift til dit service-navn med småt bogstaver
+  #         fx: membership, classes, trainer, livestream, community, traininglog, payment, dashboard, frontend
+  IMAGE_NAME: ghcr.io/goodchoiceexam/SERVICENAME
+
+jobs:
+  test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      # TODO 2: Skift FitLife.SERVICENAME.slnx til dit solution-filnavn
+      - name: Restore
+        run: dotnet restore FitLife.SERVICENAME.slnx
+
+      - name: Build
+        run: dotnet build FitLife.SERVICENAME.slnx --no-restore
+
+      # TODO 3: Skift FitLife.SERVICENAME.Tests til dit test-projekts mappenavn
+      - name: Test
+        run: dotnet test FitLife.SERVICENAME.Tests/FitLife.SERVICENAME.Tests.csproj --no-restore --no-build
+
+  push-image:
+    name: Push to GHCR
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=sha-
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          # TODO 3 (samme): Skift FitLife.SERVICENAME.Api til din API-mappes navn
+          file: FitLife.SERVICENAME.Api/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

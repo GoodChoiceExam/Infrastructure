@@ -1,33 +1,5 @@
 services:
-  grafana:
-    image: grafana/grafana:latest
-    container_name: fitlife_grafana
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning
-    environment:
-      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
-      - GF_USERS_DEFAULT_THEME=dark
-      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/fitlife-overview.json
-    restart: unless-stopped
-
-  vault:
-    image: hashicorp/vault:latest
-    container_name: fitlife_vault
-    ports:
-      - "8200:8200"
-    volumes:
-      - vault_data:/vault/data
-      - ./vault/config:/vault/config
-    cap_add:
-      - IPC_LOCK
-    environment:
-      - VAULT_ADDR=http://0.0.0.0:8200
-    command: vault server -config=/vault/config/vault.hcl
-    restart: unless-stopped
+  # ── Infrastructure ──────────────────────────────────────────────────────────
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -56,10 +28,51 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
     restart: unless-stopped
 
+  vault:
+    image: hashicorp/vault:latest
+    container_name: fitlife_vault
+    ports:
+      - "8200:8200"
+    volumes:
+      - vault_data:/vault/data
+      - ./vault/config:/vault/config
+    cap_add:
+      - IPC_LOCK
+    environment:
+      - VAULT_ADDR=http://0.0.0.0:8200
+    command: vault server -config=/vault/config/vault.hcl
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:latest
+    container_name: fitlife_loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki_data:/loki
+      - ./loki/config.yml:/etc/loki/config.yml
+    command: -config.file=/etc/loki/config.yml
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: fitlife_grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
+      - GF_USERS_DEFAULT_THEME=dark
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/fitlife-overview.json
+    restart: unless-stopped
+
+  # ── Microservices ───────────────────────────────────────────────────────────
+
   identity:
-    build:
-      context: ../Identity
-      dockerfile: FitLife.Identity.Api/Dockerfile
+    image: goodchoicecc/fitlife-identity:latest
     container_name: fitlife_identity
     expose:
       - "8080"
@@ -75,6 +88,157 @@ services:
       - mongodb
     restart: unless-stopped
 
+  membership:
+    image: goodchoicecc/fitlife-membership:latest
+    container_name: fitlife_membership
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-membership
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - Identity__JwksUri=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - identity
+    restart: unless-stopped
+
+  classes:
+    image: goodchoicecc/fitlife-classes:latest
+    container_name: fitlife_classes
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-classes
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - Identity__JwksUri=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - identity
+    restart: unless-stopped
+
+  trainer:
+    image: goodchoicecc/fitlife-trainer:latest
+    container_name: fitlife_trainer
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-trainer
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - Identity__JwksUri=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - identity
+    restart: unless-stopped
+
+  livestream:
+    image: goodchoicecc/fitlife-livestream:latest
+    container_name: fitlife_livestream
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-livestream
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - Identity__JwksUri=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - identity
+    restart: unless-stopped
+
+  community:
+    image: goodchoicecc/fitlife-community:latest
+    container_name: fitlife_community
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-community
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - Identity__JwksUri=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - identity
+    restart: unless-stopped
+
+  traininglog:
+    image: goodchoicecc/fitlife-traininglog:latest
+    container_name: fitlife_traininglog
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-traininglog
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - Identity__JwksUri=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - identity
+    restart: unless-stopped
+
+  payment:
+    image: goodchoicecc/fitlife-payment:latest
+    container_name: fitlife_payment
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-payment
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - Identity__JwksUri=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - identity
+    restart: unless-stopped
+
+  dashboard:
+    image: goodchoicecc/fitlife-dashboard:latest
+    container_name: fitlife_dashboard
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-dashboard
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - Identity__JwksUri=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - identity
+    restart: unless-stopped
+
+  frontend:
+    image: goodchoicecc/fitlife-frontend:latest
+    container_name: fitlife_frontend
+    expose:
+      - "80"
+    restart: unless-stopped
+
   nginx:
     image: nginx:alpine
     container_name: fitlife_nginx
@@ -84,19 +248,9 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - identity
+      - classes
+      - frontend
     restart: unless-stopped
-
-  loki:
-    image: grafana/loki:latest
-    container_name: fitlife_loki
-    ports:
-      - "3100:3100"
-    volumes:
-      - loki_data:/loki
-      - ./loki/config.yml:/etc/loki/config.yml
-    command: -config.file=/etc/loki/config.yml
-    restart: unless-stopped
-
 
 volumes:
   grafana_data:
