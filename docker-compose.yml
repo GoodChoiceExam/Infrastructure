@@ -103,6 +103,55 @@ services:
       - identity
     restart: unless-stopped
 
+  classes:
+    image: goodchoicecc/fitlife-classes:latest
+    container_name: fitlife_classes
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-classes
+      - MongoDB__CollectionName=trainingClasses
+      - Jwt__Issuer=fitlife-identity
+      - Jwt__Audience=fitlife
+      - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - identity
+    restart: unless-stopped
+
+  trainer:
+    image: goodchoicecc/fitlife-trainer:latest
+    container_name: fitlife_trainer
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife_trainer
+      - MongoDB__CollectionName=trainers
+      - Jwt__Issuer=fitlife-identity
+      - Jwt__Audience=fitlife
+      - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - identity
+    restart: unless-stopped
+
+  traininglog:
+    image: goodchoicecc/fitlife-traininglog:latest
+    container_name: fitlife_traininglog
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-traininglog
+      - Jwt__Authority=http://identity:8080
+      - Jwt__Audience=fitlife
+    depends_on:
+      - mongodb
+      - identity
+    restart: unless-stopped
+
   frontend:
     image: goodchoicecc/fitlife-frontend:latest
     container_name: fitlife_frontend
