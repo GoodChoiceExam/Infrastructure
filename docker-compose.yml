@@ -75,7 +75,7 @@ services:
     expose:
       - "8080"
     environment:
-      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__ConnectionString=mongodb://identity_user:${IDENTITY_MONGO_PASSWORD}@mongodb:27017
       - MongoDB__DatabaseName=fitlife-identity
       - Jwt__Issuer=fitlife-identity
       - Jwt__Audience=fitlife
@@ -92,7 +92,7 @@ services:
     expose:
       - "8080"
     environment:
-      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__ConnectionString=mongodb://livestream_user:${LIVESTREAM_MONGO_PASSWORD}@mongodb:27017
       - MongoDB__DatabaseName=fitlife_livestream
       - MongoDB__CollectionName=livestreams
       - Jwt__Issuer=fitlife-identity
@@ -109,7 +109,7 @@ services:
     expose:
       - "8080"
     environment:
-      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__ConnectionString=mongodb://classes_user:${CLASSES_MONGO_PASSWORD}@mongodb:27017
       - MongoDB__DatabaseName=fitlife-classes
       - MongoDB__CollectionName=trainingClasses
       - Jwt__Issuer=fitlife-identity
@@ -126,7 +126,7 @@ services:
     expose:
       - "8080"
     environment:
-      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__ConnectionString=mongodb://trainer_user:${TRAINER_MONGO_PASSWORD}@mongodb:27017
       - MongoDB__DatabaseName=fitlife_trainer
       - MongoDB__CollectionName=trainers
       - Jwt__Issuer=fitlife-identity
@@ -143,7 +143,7 @@ services:
     expose:
       - "8080"
     environment:
-      - MongoDB__ConnectionString=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+      - MongoDB__ConnectionString=mongodb://traininglog_user:${TRAININGLOG_MONGO_PASSWORD}@mongodb:27017
       - MongoDB__DatabaseName=fitlife-traininglog
       - Jwt__Authority=http://identity:8080
       - Jwt__Audience=fitlife
