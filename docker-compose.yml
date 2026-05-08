@@ -70,9 +70,7 @@ services:
     restart: unless-stopped
 
   identity:
-    build:
-      context: ../Identity
-      dockerfile: FitLife.Identity.Api/Dockerfile
+    image: goodchoicecc/fitlife-identity:latest
     container_name: fitlife_identity
     expose:
       - "8080"
@@ -89,9 +87,7 @@ services:
     restart: unless-stopped
 
   livestream:
-    build:
-      context: ../Livestream
-      dockerfile: Dockerfile
+    image: goodchoicecc/fitlife-livestream:latest
     container_name: fitlife_livestream
     expose:
       - "8080"
