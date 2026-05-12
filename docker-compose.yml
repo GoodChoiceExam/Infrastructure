@@ -160,7 +160,7 @@ services:
     environment:
       - MongoDB__ConnectionString=mongodb://membership_user:${MEMBERSHIP_MONGO_PASSWORD}@mongodb:27017
       - MongoDB__DatabaseName=fitlife-membership
-      - Jwt__Authority=http://identity:8080
+      - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
       - Jwt__Audience=fitlife
     depends_on:
       - mongodb
