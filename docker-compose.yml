@@ -152,6 +152,39 @@ services:
       - identity
     restart: unless-stopped
 
+  membership:
+    image: goodchoicecc/fitlife-membership:latest
+    container_name: fitlife_membership
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://membership_user:${MEMBERSHIP_MONGO_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-membership
+      - Jwt__Authority=http://identity:8080
+      - Jwt__Audience=fitlife
+    depends_on:
+      - mongodb
+      - identity
+    restart: unless-stopped
+
+  community:
+    image: goodchoicecc/fitlife-community:latest
+    container_name: fitlife_community
+    expose:
+      - "8080"
+    environment:
+      - MongoDB__ConnectionString=mongodb://community_user:${COMMUNITY_MONGO_PASSWORD}@mongodb:27017
+      - MongoDB__DatabaseName=fitlife-community
+      - MongoDB__CommunitiesCollectionName=communities
+      - MongoDB__PostsCollectionName=communityPosts
+      - Jwt__Issuer=fitlife-identity
+      - Jwt__Audience=fitlife
+      - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
+    depends_on:
+      - mongodb
+      - identity
+    restart: unless-stopped
+
   frontend:
     image: goodchoicecc/fitlife-frontend:latest
     container_name: fitlife_frontend
