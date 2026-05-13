@@ -4,526 +4,2454 @@
   "schemaVersion": 39,
   "version": 2,
   "refresh": "10s",
-  "time": { "from": "now-1h", "to": "now" },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
   "timepicker": {},
   "timezone": "browser",
-  "tags": ["fitlife"],
+  "tags": [
+    "fitlife"
+  ],
   "graphTooltip": 1,
   "panels": [
-
     {
-      "id": 1, "type": "stat", "title": "Identity",
+      "id": 1,
+      "type": "stat",
+      "title": "Identity",
       "description": "Active if logs received in the last 5 minutes",
-      "gridPos": { "x": 0, "y": 0, "w": 4, "h": 4 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
-      "fieldConfig": {
-        "defaults": {
-          "noValue": "Offline",
-          "color": { "mode": "thresholds" },
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] },
-          "mappings": [
-            { "type": "special", "options": { "match": "null+nan", "result": { "text": "Offline", "color": "red", "index": 0 } } },
-            { "type": "value", "options": { "0": { "text": "Offline", "color": "red", "index": 1 } } },
-            { "type": "range", "options": { "from": 1, "to": 1e15, "result": { "text": "Online", "color": "green", "index": 2 } } }
-          ]
-        }
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 4,
+        "h": 4
       },
-      "targets": [{ "expr": "count_over_time({container=\"fitlife_identity\"}[5m])", "refId": "A" }]
-    },
-
-    {
-      "id": 2, "type": "stat", "title": "Training Log",
-      "description": "Active if logs received in the last 5 minutes",
-      "gridPos": { "x": 4, "y": 0, "w": 4, "h": 4 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
-      "fieldConfig": {
-        "defaults": {
-          "noValue": "Offline",
-          "color": { "mode": "thresholds" },
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] },
-          "mappings": [
-            { "type": "special", "options": { "match": "null+nan", "result": { "text": "Offline", "color": "red", "index": 0 } } },
-            { "type": "value", "options": { "0": { "text": "Offline", "color": "red", "index": 1 } } },
-            { "type": "range", "options": { "from": 1, "to": 1e15, "result": { "text": "Online", "color": "green", "index": 2 } } }
-          ]
-        }
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
-      "targets": [{ "expr": "count_over_time({container=\"fitlife_traininglog\"}[5m])", "refId": "A" }]
-    },
-
-    {
-      "id": 3, "type": "stat", "title": "Classes",
-      "description": "Active if logs received in the last 5 minutes",
-      "gridPos": { "x": 8, "y": 0, "w": 4, "h": 4 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
-      "fieldConfig": {
-        "defaults": {
-          "noValue": "Offline",
-          "color": { "mode": "thresholds" },
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] },
-          "mappings": [
-            { "type": "special", "options": { "match": "null+nan", "result": { "text": "Offline", "color": "red", "index": 0 } } },
-            { "type": "value", "options": { "0": { "text": "Offline", "color": "red", "index": 1 } } },
-            { "type": "range", "options": { "from": 1, "to": 1e15, "result": { "text": "Online", "color": "green", "index": 2 } } }
-          ]
-        }
-      },
-      "targets": [{ "expr": "count_over_time({container=\"fitlife_classes\"}[5m])", "refId": "A" }]
-    },
-
-    {
-      "id": 4, "type": "stat", "title": "Community",
-      "description": "Active if logs received in the last 5 minutes",
-      "gridPos": { "x": 12, "y": 0, "w": 4, "h": 4 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
-      "fieldConfig": {
-        "defaults": {
-          "noValue": "Offline",
-          "color": { "mode": "thresholds" },
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] },
-          "mappings": [
-            { "type": "special", "options": { "match": "null+nan", "result": { "text": "Offline", "color": "red", "index": 0 } } },
-            { "type": "value", "options": { "0": { "text": "Offline", "color": "red", "index": 1 } } },
-            { "type": "range", "options": { "from": 1, "to": 1e15, "result": { "text": "Online", "color": "green", "index": 2 } } }
-          ]
-        }
-      },
-      "targets": [{ "expr": "count_over_time({container=\"fitlife_community\"}[5m])", "refId": "A" }]
-    },
-
-    {
-      "id": 5, "type": "stat", "title": "Livestream",
-      "description": "Active if logs received in the last 5 minutes",
-      "gridPos": { "x": 16, "y": 0, "w": 4, "h": 4 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
-      "fieldConfig": {
-        "defaults": {
-          "noValue": "Offline",
-          "color": { "mode": "thresholds" },
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] },
-          "mappings": [
-            { "type": "special", "options": { "match": "null+nan", "result": { "text": "Offline", "color": "red", "index": 0 } } },
-            { "type": "value", "options": { "0": { "text": "Offline", "color": "red", "index": 1 } } },
-            { "type": "range", "options": { "from": 1, "to": 1e15, "result": { "text": "Online", "color": "green", "index": 2 } } }
-          ]
-        }
-      },
-      "targets": [{ "expr": "count_over_time({container=\"fitlife_livestream\"}[5m])", "refId": "A" }]
-    },
-
-    {
-      "id": 6, "type": "stat", "title": "Trainer",
-      "description": "Active if logs received in the last 5 minutes",
-      "gridPos": { "x": 20, "y": 0, "w": 4, "h": 4 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
-      "fieldConfig": {
-        "defaults": {
-          "noValue": "Offline",
-          "color": { "mode": "thresholds" },
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] },
-          "mappings": [
-            { "type": "special", "options": { "match": "null+nan", "result": { "text": "Offline", "color": "red", "index": 0 } } },
-            { "type": "value", "options": { "0": { "text": "Offline", "color": "red", "index": 1 } } },
-            { "type": "range", "options": { "from": 1, "to": 1e15, "result": { "text": "Online", "color": "green", "index": 2 } } }
-          ]
-        }
-      },
-      "targets": [{ "expr": "count_over_time({container=\"fitlife_trainer\"}[5m])", "refId": "A" }]
-    },
-
-    {
-      "id": 10, "type": "timeseries", "title": "Error Rate — All Services",
-      "gridPos": { "x": 0, "y": 4, "w": 16, "h": 9 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
       "options": {
-        "tooltip": { "mode": "multi", "sort": "desc" },
-        "legend": { "displayMode": "table", "placement": "bottom", "calcs": ["sum", "max"] }
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
       },
       "fieldConfig": {
         "defaults": {
-          "custom": { "lineWidth": 2, "fillOpacity": 10, "gradientMode": "opacity", "spanNulls": true },
+          "noValue": "Offline",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 1
+                }
+              }
+            },
+            {
+              "type": "range",
+              "options": {
+                "from": 1,
+                "to": 1000000000000000.0,
+                "result": {
+                  "text": "Online",
+                  "color": "green",
+                  "index": 2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_identity\"}[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Training Log",
+      "description": "Active if logs received in the last 5 minutes",
+      "gridPos": {
+        "x": 4,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "Offline",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 1
+                }
+              }
+            },
+            {
+              "type": "range",
+              "options": {
+                "from": 1,
+                "to": 1000000000000000.0,
+                "result": {
+                  "text": "Online",
+                  "color": "green",
+                  "index": 2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_traininglog\"}[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Classes",
+      "description": "Active if logs received in the last 5 minutes",
+      "gridPos": {
+        "x": 8,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "Offline",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 1
+                }
+              }
+            },
+            {
+              "type": "range",
+              "options": {
+                "from": 1,
+                "to": 1000000000000000.0,
+                "result": {
+                  "text": "Online",
+                  "color": "green",
+                  "index": 2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_classes\"}[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Community",
+      "description": "Active if logs received in the last 5 minutes",
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "Offline",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 1
+                }
+              }
+            },
+            {
+              "type": "range",
+              "options": {
+                "from": 1,
+                "to": 1000000000000000.0,
+                "result": {
+                  "text": "Online",
+                  "color": "green",
+                  "index": 2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_community\"}[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Livestream",
+      "description": "Active if logs received in the last 5 minutes",
+      "gridPos": {
+        "x": 16,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "Offline",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 1
+                }
+              }
+            },
+            {
+              "type": "range",
+              "options": {
+                "from": 1,
+                "to": 1000000000000000.0,
+                "result": {
+                  "text": "Online",
+                  "color": "green",
+                  "index": 2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_livestream\"}[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Trainer",
+      "description": "Active if logs received in the last 5 minutes",
+      "gridPos": {
+        "x": 20,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "Offline",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 1
+                }
+              }
+            },
+            {
+              "type": "range",
+              "options": {
+                "from": 1,
+                "to": 1000000000000000.0,
+                "result": {
+                  "text": "Online",
+                  "color": "green",
+                  "index": 2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_trainer\"}[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "Error Rate \u2014 All Services",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 16,
+        "h": 9
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "sum",
+            "max"
+          ]
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "spanNulls": true
+          },
           "unit": "short"
         },
         "overrides": [
-          { "matcher": { "id": "byName", "options": "Identity" },     "properties": [{ "id": "color", "value": { "fixedColor": "#5794F2", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Training Log" }, "properties": [{ "id": "color", "value": { "fixedColor": "#73BF69", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Classes" },      "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Community" },    "properties": [{ "id": "color", "value": { "fixedColor": "#FF9830", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Livestream" },   "properties": [{ "id": "color", "value": { "fixedColor": "#B877D9", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Trainer" },      "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] }
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Identity"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5794F2",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Training Log"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#73BF69",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Classes"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FADE2A",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Community"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF9830",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Livestream"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#B877D9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Trainer"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2495C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
         ]
       },
       "targets": [
-        { "expr": "sum(count_over_time({container=\"fitlife_identity\"}    |= \"ERROR\" [2m]))", "legendFormat": "Identity",     "refId": "A" },
-        { "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"ERROR\" [2m]))", "legendFormat": "Training Log", "refId": "B" },
-        { "expr": "sum(count_over_time({container=\"fitlife_classes\"}     |= \"ERROR\" [2m]))", "legendFormat": "Classes",      "refId": "C" },
-        { "expr": "sum(count_over_time({container=\"fitlife_community\"}   |= \"ERROR\" [2m]))", "legendFormat": "Community",    "refId": "D" },
-        { "expr": "sum(count_over_time({container=\"fitlife_livestream\"}  |= \"ERROR\" [2m]))", "legendFormat": "Livestream",   "refId": "E" },
-        { "expr": "sum(count_over_time({container=\"fitlife_trainer\"}     |= \"ERROR\" [2m]))", "legendFormat": "Trainer",      "refId": "F" }
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_identity\"}    |= \"ERROR\" [2m]))",
+          "legendFormat": "Identity",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"ERROR\" [2m]))",
+          "legendFormat": "Training Log",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_classes\"}     |= \"ERROR\" [2m]))",
+          "legendFormat": "Classes",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_community\"}   |= \"ERROR\" [2m]))",
+          "legendFormat": "Community",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_livestream\"}  |= \"ERROR\" [2m]))",
+          "legendFormat": "Livestream",
+          "refId": "E"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_trainer\"}     |= \"ERROR\" [2m]))",
+          "legendFormat": "Trainer",
+          "refId": "F"
+        }
       ]
     },
-
     {
-      "id": 11, "type": "stat", "title": "Total Errors (1h)",
-      "gridPos": { "x": 16, "y": 4, "w": 4, "h": 4 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "area", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
-      "fieldConfig": {
-        "defaults": {
-          "color": { "mode": "thresholds" },
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] },
-          "noValue": "0"
-        }
+      "id": 11,
+      "type": "stat",
+      "title": "Total Errors (1h)",
+      "gridPos": {
+        "x": 16,
+        "y": 4,
+        "w": 4,
+        "h": 4
       },
-      "targets": [{ "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer)\"} |= \"ERROR\" [1h]))", "refId": "A" }]
-    },
-
-    {
-      "id": 12, "type": "stat", "title": "Total Warnings (1h)",
-      "gridPos": { "x": 20, "y": 4, "w": 4, "h": 4 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "area", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
-      "fieldConfig": {
-        "defaults": {
-          "color": { "mode": "thresholds" },
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] },
-          "noValue": "0"
-        }
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
-      "targets": [{ "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer)\"} |= \"WARN\" [1h]))", "refId": "A" }]
-    },
-
-    {
-      "id": 13, "type": "timeseries", "title": "Log Volume — All Services",
-      "gridPos": { "x": 16, "y": 8, "w": 8, "h": 5 },
-      "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
       "options": {
-        "tooltip": { "mode": "multi", "sort": "desc" },
-        "legend": { "displayMode": "list", "placement": "bottom" }
+        "colorMode": "background",
+        "graphMode": "area",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
       },
       "fieldConfig": {
         "defaults": {
-          "custom": { "lineWidth": 1, "fillOpacity": 20, "gradientMode": "opacity", "stacking": { "mode": "normal", "group": "A" }, "spanNulls": true },
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "noValue": "0"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer)\"} |= \"ERROR\" [1h]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "stat",
+      "title": "Total Warnings (1h)",
+      "gridPos": {
+        "x": 20,
+        "y": 4,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              }
+            ]
+          },
+          "noValue": "0"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer)\"} |= \"WARN\" [1h]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "type": "timeseries",
+      "title": "Log Volume \u2014 All Services",
+      "gridPos": {
+        "x": 16,
+        "y": 8,
+        "w": 8,
+        "h": 5
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "lineWidth": 1,
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
+            "stacking": {
+              "mode": "normal",
+              "group": "A"
+            },
+            "spanNulls": true
+          },
           "unit": "short"
         },
         "overrides": [
-          { "matcher": { "id": "byName", "options": "Identity" },     "properties": [{ "id": "color", "value": { "fixedColor": "#5794F2", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Training Log" }, "properties": [{ "id": "color", "value": { "fixedColor": "#73BF69", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Classes" },      "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Community" },    "properties": [{ "id": "color", "value": { "fixedColor": "#FF9830", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Livestream" },   "properties": [{ "id": "color", "value": { "fixedColor": "#B877D9", "mode": "fixed" } }] },
-          { "matcher": { "id": "byName", "options": "Trainer" },      "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] }
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Identity"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5794F2",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Training Log"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#73BF69",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Classes"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FADE2A",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Community"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF9830",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Livestream"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#B877D9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Trainer"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2495C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
         ]
       },
       "targets": [
-        { "expr": "sum(count_over_time({container=\"fitlife_identity\"}    [2m]))", "legendFormat": "Identity",     "refId": "A" },
-        { "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} [2m]))", "legendFormat": "Training Log", "refId": "B" },
-        { "expr": "sum(count_over_time({container=\"fitlife_classes\"}     [2m]))", "legendFormat": "Classes",      "refId": "C" },
-        { "expr": "sum(count_over_time({container=\"fitlife_community\"}   [2m]))", "legendFormat": "Community",    "refId": "D" },
-        { "expr": "sum(count_over_time({container=\"fitlife_livestream\"}  [2m]))", "legendFormat": "Livestream",   "refId": "E" },
-        { "expr": "sum(count_over_time({container=\"fitlife_trainer\"}     [2m]))", "legendFormat": "Trainer",      "refId": "F" }
-      ]
-    },
-
-    {
-      "id": 200, "type": "row", "title": "Identity", "collapsed": true,
-      "gridPos": { "x": 0, "y": 13, "w": 24, "h": 1 },
-      "panels": [
         {
-          "id": 201, "type": "timeseries", "title": "Identity — Log Volume",
-          "gridPos": { "x": 0, "y": 14, "w": 16, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "tooltip": { "mode": "multi" }, "legend": { "displayMode": "list", "placement": "bottom" } },
-          "fieldConfig": {
-            "defaults": { "custom": { "lineWidth": 2, "fillOpacity": 15, "gradientMode": "opacity", "spanNulls": true }, "unit": "short" },
-            "overrides": [
-              { "matcher": { "id": "byName", "options": "Errors" },   "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Warnings" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Info" },     "properties": [{ "id": "color", "value": { "fixedColor": "#5794F2", "mode": "fixed" } }] }
-            ]
-          },
-          "targets": [
-            { "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"ERROR\" [2m]))", "legendFormat": "Errors",   "refId": "A" },
-            { "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"WARN\"  [2m]))", "legendFormat": "Warnings", "refId": "B" },
-            { "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"INFO\"  [2m]))", "legendFormat": "Info",     "refId": "C" }
-          ]
+          "expr": "sum(count_over_time({container=\"fitlife_identity\"}    [2m]))",
+          "legendFormat": "Identity",
+          "refId": "A"
         },
         {
-          "id": 202, "type": "stat", "title": "Errors (1h)",
-          "gridPos": { "x": 16, "y": 14, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"ERROR\" [1h]))", "refId": "A" }]
+          "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} [2m]))",
+          "legendFormat": "Training Log",
+          "refId": "B"
         },
         {
-          "id": 203, "type": "stat", "title": "Warnings (1h)",
-          "gridPos": { "x": 20, "y": 14, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"WARN\" [1h]))", "refId": "A" }]
+          "expr": "sum(count_over_time({container=\"fitlife_classes\"}     [2m]))",
+          "legendFormat": "Classes",
+          "refId": "C"
         },
         {
-          "id": 204, "type": "logs", "title": "Identity — Live Logs",
-          "gridPos": { "x": 0, "y": 22, "w": 24, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "dedupStrategy": "none", "showLabels": false, "showTime": true, "sortOrder": "Descending", "wrapLogMessage": true },
-          "targets": [{ "expr": "{container=\"fitlife_identity\"}", "refId": "A" }]
+          "expr": "sum(count_over_time({container=\"fitlife_community\"}   [2m]))",
+          "legendFormat": "Community",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_livestream\"}  [2m]))",
+          "legendFormat": "Livestream",
+          "refId": "E"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_trainer\"}     [2m]))",
+          "legendFormat": "Trainer",
+          "refId": "F"
         }
       ]
     },
-
     {
-      "id": 300, "type": "row", "title": "Training Log", "collapsed": true,
-      "gridPos": { "x": 0, "y": 14, "w": 24, "h": 1 },
+      "id": 200,
+      "type": "row",
+      "title": "Identity",
+      "collapsed": true,
+      "gridPos": {
+        "x": 0,
+        "y": 13,
+        "w": 24,
+        "h": 1
+      },
       "panels": [
         {
-          "id": 301, "type": "timeseries", "title": "Training Log — Log Volume",
-          "gridPos": { "x": 0, "y": 15, "w": 16, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "tooltip": { "mode": "multi" }, "legend": { "displayMode": "list", "placement": "bottom" } },
+          "id": 201,
+          "type": "timeseries",
+          "title": "Identity \u2014 Log Volume",
+          "gridPos": {
+            "x": 0,
+            "y": 14,
+            "w": 16,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi"
+            },
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"
+            }
+          },
           "fieldConfig": {
-            "defaults": { "custom": { "lineWidth": 2, "fillOpacity": 15, "gradientMode": "opacity", "spanNulls": true }, "unit": "short" },
+            "defaults": {
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 15,
+                "gradientMode": "opacity",
+                "spanNulls": true
+              },
+              "unit": "short"
+            },
             "overrides": [
-              { "matcher": { "id": "byName", "options": "Errors" },   "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Warnings" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Info" },     "properties": [{ "id": "color", "value": { "fixedColor": "#73BF69", "mode": "fixed" } }] }
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Errors"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#F2495C",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Warnings"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FADE2A",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Info"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#5794F2",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
             ]
           },
           "targets": [
-            { "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"ERROR\" [2m]))", "legendFormat": "Errors",   "refId": "A" },
-            { "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"WARN\"  [2m]))", "legendFormat": "Warnings", "refId": "B" },
-            { "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"INFO\"  [2m]))", "legendFormat": "Info",     "refId": "C" }
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"ERROR\" [2m]))",
+              "legendFormat": "Errors",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"WARN\"  [2m]))",
+              "legendFormat": "Warnings",
+              "refId": "B"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"INFO\"  [2m]))",
+              "legendFormat": "Info",
+              "refId": "C"
+            }
           ]
         },
         {
-          "id": 302, "type": "stat", "title": "Errors (1h)",
-          "gridPos": { "x": 16, "y": 15, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"ERROR\" [1h]))", "refId": "A" }]
+          "id": 202,
+          "type": "stat",
+          "title": "Errors (1h)",
+          "gridPos": {
+            "x": 16,
+            "y": 14,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"ERROR\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 303, "type": "stat", "title": "Warnings (1h)",
-          "gridPos": { "x": 20, "y": 15, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"WARN\" [1h]))", "refId": "A" }]
+          "id": 203,
+          "type": "stat",
+          "title": "Warnings (1h)",
+          "gridPos": {
+            "x": 20,
+            "y": 14,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"WARN\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 304, "type": "logs", "title": "Training Log — Live Logs",
-          "gridPos": { "x": 0, "y": 23, "w": 24, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "dedupStrategy": "none", "showLabels": false, "showTime": true, "sortOrder": "Descending", "wrapLogMessage": true },
-          "targets": [{ "expr": "{container=\"fitlife_traininglog\"}", "refId": "A" }]
+          "id": 204,
+          "type": "logs",
+          "title": "Identity \u2014 Live Logs",
+          "gridPos": {
+            "x": 0,
+            "y": 22,
+            "w": 24,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "dedupStrategy": "none",
+            "showLabels": false,
+            "showTime": true,
+            "sortOrder": "Descending",
+            "wrapLogMessage": true
+          },
+          "targets": [
+            {
+              "expr": "{container=\"fitlife_identity\"}",
+              "refId": "A"
+            }
+          ]
         }
       ]
     },
-
     {
-      "id": 400, "type": "row", "title": "Classes", "collapsed": true,
-      "gridPos": { "x": 0, "y": 15, "w": 24, "h": 1 },
+      "id": 300,
+      "type": "row",
+      "title": "Training Log",
+      "collapsed": true,
+      "gridPos": {
+        "x": 0,
+        "y": 14,
+        "w": 24,
+        "h": 1
+      },
       "panels": [
         {
-          "id": 401, "type": "timeseries", "title": "Classes — Log Volume",
-          "gridPos": { "x": 0, "y": 16, "w": 16, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "tooltip": { "mode": "multi" }, "legend": { "displayMode": "list", "placement": "bottom" } },
+          "id": 301,
+          "type": "timeseries",
+          "title": "Training Log \u2014 Log Volume",
+          "gridPos": {
+            "x": 0,
+            "y": 15,
+            "w": 16,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi"
+            },
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"
+            }
+          },
           "fieldConfig": {
-            "defaults": { "custom": { "lineWidth": 2, "fillOpacity": 15, "gradientMode": "opacity", "spanNulls": true }, "unit": "short" },
+            "defaults": {
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 15,
+                "gradientMode": "opacity",
+                "spanNulls": true
+              },
+              "unit": "short"
+            },
             "overrides": [
-              { "matcher": { "id": "byName", "options": "Errors" },   "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Warnings" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Info" },     "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] }
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Errors"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#F2495C",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Warnings"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FADE2A",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Info"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#73BF69",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
             ]
           },
           "targets": [
-            { "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"ERROR\" [2m]))", "legendFormat": "Errors",   "refId": "A" },
-            { "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"WARN\"  [2m]))", "legendFormat": "Warnings", "refId": "B" },
-            { "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"INFO\"  [2m]))", "legendFormat": "Info",     "refId": "C" }
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"ERROR\" [2m]))",
+              "legendFormat": "Errors",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"WARN\"  [2m]))",
+              "legendFormat": "Warnings",
+              "refId": "B"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"INFO\"  [2m]))",
+              "legendFormat": "Info",
+              "refId": "C"
+            }
           ]
         },
         {
-          "id": 402, "type": "stat", "title": "Errors (1h)",
-          "gridPos": { "x": 16, "y": 16, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"ERROR\" [1h]))", "refId": "A" }]
+          "id": 302,
+          "type": "stat",
+          "title": "Errors (1h)",
+          "gridPos": {
+            "x": 16,
+            "y": 15,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"ERROR\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 403, "type": "stat", "title": "Warnings (1h)",
-          "gridPos": { "x": 20, "y": 16, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"WARN\" [1h]))", "refId": "A" }]
+          "id": 303,
+          "type": "stat",
+          "title": "Warnings (1h)",
+          "gridPos": {
+            "x": 20,
+            "y": 15,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"WARN\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 404, "type": "logs", "title": "Classes — Live Logs",
-          "gridPos": { "x": 0, "y": 24, "w": 24, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "dedupStrategy": "none", "showLabels": false, "showTime": true, "sortOrder": "Descending", "wrapLogMessage": true },
-          "targets": [{ "expr": "{container=\"fitlife_classes\"}", "refId": "A" }]
+          "id": 304,
+          "type": "logs",
+          "title": "Training Log \u2014 Live Logs",
+          "gridPos": {
+            "x": 0,
+            "y": 23,
+            "w": 24,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "dedupStrategy": "none",
+            "showLabels": false,
+            "showTime": true,
+            "sortOrder": "Descending",
+            "wrapLogMessage": true
+          },
+          "targets": [
+            {
+              "expr": "{container=\"fitlife_traininglog\"}",
+              "refId": "A"
+            }
+          ]
         }
       ]
     },
-
     {
-      "id": 500, "type": "row", "title": "Community", "collapsed": true,
-      "gridPos": { "x": 0, "y": 16, "w": 24, "h": 1 },
+      "id": 400,
+      "type": "row",
+      "title": "Classes",
+      "collapsed": true,
+      "gridPos": {
+        "x": 0,
+        "y": 15,
+        "w": 24,
+        "h": 1
+      },
       "panels": [
         {
-          "id": 501, "type": "timeseries", "title": "Community — Log Volume",
-          "gridPos": { "x": 0, "y": 17, "w": 16, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "tooltip": { "mode": "multi" }, "legend": { "displayMode": "list", "placement": "bottom" } },
+          "id": 401,
+          "type": "timeseries",
+          "title": "Classes \u2014 Log Volume",
+          "gridPos": {
+            "x": 0,
+            "y": 16,
+            "w": 16,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi"
+            },
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"
+            }
+          },
           "fieldConfig": {
-            "defaults": { "custom": { "lineWidth": 2, "fillOpacity": 15, "gradientMode": "opacity", "spanNulls": true }, "unit": "short" },
+            "defaults": {
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 15,
+                "gradientMode": "opacity",
+                "spanNulls": true
+              },
+              "unit": "short"
+            },
             "overrides": [
-              { "matcher": { "id": "byName", "options": "Errors" },   "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Warnings" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Info" },     "properties": [{ "id": "color", "value": { "fixedColor": "#FF9830", "mode": "fixed" } }] }
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Errors"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#F2495C",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Warnings"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FADE2A",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Info"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FADE2A",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
             ]
           },
           "targets": [
-            { "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"ERROR\" [2m]))", "legendFormat": "Errors",   "refId": "A" },
-            { "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"WARN\"  [2m]))", "legendFormat": "Warnings", "refId": "B" },
-            { "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"INFO\"  [2m]))", "legendFormat": "Info",     "refId": "C" }
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"ERROR\" [2m]))",
+              "legendFormat": "Errors",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"WARN\"  [2m]))",
+              "legendFormat": "Warnings",
+              "refId": "B"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"INFO\"  [2m]))",
+              "legendFormat": "Info",
+              "refId": "C"
+            }
           ]
         },
         {
-          "id": 502, "type": "stat", "title": "Errors (1h)",
-          "gridPos": { "x": 16, "y": 17, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"ERROR\" [1h]))", "refId": "A" }]
+          "id": 402,
+          "type": "stat",
+          "title": "Errors (1h)",
+          "gridPos": {
+            "x": 16,
+            "y": 16,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"ERROR\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 503, "type": "stat", "title": "Warnings (1h)",
-          "gridPos": { "x": 20, "y": 17, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"WARN\" [1h]))", "refId": "A" }]
+          "id": 403,
+          "type": "stat",
+          "title": "Warnings (1h)",
+          "gridPos": {
+            "x": 20,
+            "y": 16,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"WARN\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 504, "type": "logs", "title": "Community — Live Logs",
-          "gridPos": { "x": 0, "y": 25, "w": 24, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "dedupStrategy": "none", "showLabels": false, "showTime": true, "sortOrder": "Descending", "wrapLogMessage": true },
-          "targets": [{ "expr": "{container=\"fitlife_community\"}", "refId": "A" }]
+          "id": 404,
+          "type": "logs",
+          "title": "Classes \u2014 Live Logs",
+          "gridPos": {
+            "x": 0,
+            "y": 24,
+            "w": 24,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "dedupStrategy": "none",
+            "showLabels": false,
+            "showTime": true,
+            "sortOrder": "Descending",
+            "wrapLogMessage": true
+          },
+          "targets": [
+            {
+              "expr": "{container=\"fitlife_classes\"}",
+              "refId": "A"
+            }
+          ]
         }
       ]
     },
-
     {
-      "id": 600, "type": "row", "title": "Livestream", "collapsed": true,
-      "gridPos": { "x": 0, "y": 17, "w": 24, "h": 1 },
+      "id": 500,
+      "type": "row",
+      "title": "Community",
+      "collapsed": true,
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 24,
+        "h": 1
+      },
       "panels": [
         {
-          "id": 601, "type": "timeseries", "title": "Livestream — Log Volume",
-          "gridPos": { "x": 0, "y": 18, "w": 16, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "tooltip": { "mode": "multi" }, "legend": { "displayMode": "list", "placement": "bottom" } },
+          "id": 501,
+          "type": "timeseries",
+          "title": "Community \u2014 Log Volume",
+          "gridPos": {
+            "x": 0,
+            "y": 17,
+            "w": 16,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi"
+            },
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"
+            }
+          },
           "fieldConfig": {
-            "defaults": { "custom": { "lineWidth": 2, "fillOpacity": 15, "gradientMode": "opacity", "spanNulls": true }, "unit": "short" },
+            "defaults": {
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 15,
+                "gradientMode": "opacity",
+                "spanNulls": true
+              },
+              "unit": "short"
+            },
             "overrides": [
-              { "matcher": { "id": "byName", "options": "Errors" },   "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Warnings" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Info" },     "properties": [{ "id": "color", "value": { "fixedColor": "#B877D9", "mode": "fixed" } }] }
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Errors"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#F2495C",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Warnings"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FADE2A",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Info"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FF9830",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
             ]
           },
           "targets": [
-            { "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"ERROR\" [2m]))", "legendFormat": "Errors",   "refId": "A" },
-            { "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"WARN\"  [2m]))", "legendFormat": "Warnings", "refId": "B" },
-            { "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"INFO\"  [2m]))", "legendFormat": "Info",     "refId": "C" }
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"ERROR\" [2m]))",
+              "legendFormat": "Errors",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"WARN\"  [2m]))",
+              "legendFormat": "Warnings",
+              "refId": "B"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"INFO\"  [2m]))",
+              "legendFormat": "Info",
+              "refId": "C"
+            }
           ]
         },
         {
-          "id": 602, "type": "stat", "title": "Errors (1h)",
-          "gridPos": { "x": 16, "y": 18, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"ERROR\" [1h]))", "refId": "A" }]
+          "id": 502,
+          "type": "stat",
+          "title": "Errors (1h)",
+          "gridPos": {
+            "x": 16,
+            "y": 17,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"ERROR\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 603, "type": "stat", "title": "Warnings (1h)",
-          "gridPos": { "x": 20, "y": 18, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"WARN\" [1h]))", "refId": "A" }]
+          "id": 503,
+          "type": "stat",
+          "title": "Warnings (1h)",
+          "gridPos": {
+            "x": 20,
+            "y": 17,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"WARN\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 604, "type": "logs", "title": "Livestream — Live Logs",
-          "gridPos": { "x": 0, "y": 26, "w": 24, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "dedupStrategy": "none", "showLabels": false, "showTime": true, "sortOrder": "Descending", "wrapLogMessage": true },
-          "targets": [{ "expr": "{container=\"fitlife_livestream\"}", "refId": "A" }]
+          "id": 504,
+          "type": "logs",
+          "title": "Community \u2014 Live Logs",
+          "gridPos": {
+            "x": 0,
+            "y": 25,
+            "w": 24,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "dedupStrategy": "none",
+            "showLabels": false,
+            "showTime": true,
+            "sortOrder": "Descending",
+            "wrapLogMessage": true
+          },
+          "targets": [
+            {
+              "expr": "{container=\"fitlife_community\"}",
+              "refId": "A"
+            }
+          ]
         }
       ]
     },
-
     {
-      "id": 700, "type": "row", "title": "Trainer", "collapsed": true,
-      "gridPos": { "x": 0, "y": 18, "w": 24, "h": 1 },
+      "id": 600,
+      "type": "row",
+      "title": "Livestream",
+      "collapsed": true,
+      "gridPos": {
+        "x": 0,
+        "y": 17,
+        "w": 24,
+        "h": 1
+      },
       "panels": [
         {
-          "id": 701, "type": "timeseries", "title": "Trainer — Log Volume",
-          "gridPos": { "x": 0, "y": 19, "w": 16, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "tooltip": { "mode": "multi" }, "legend": { "displayMode": "list", "placement": "bottom" } },
+          "id": 601,
+          "type": "timeseries",
+          "title": "Livestream \u2014 Log Volume",
+          "gridPos": {
+            "x": 0,
+            "y": 18,
+            "w": 16,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi"
+            },
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"
+            }
+          },
           "fieldConfig": {
-            "defaults": { "custom": { "lineWidth": 2, "fillOpacity": 15, "gradientMode": "opacity", "spanNulls": true }, "unit": "short" },
+            "defaults": {
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 15,
+                "gradientMode": "opacity",
+                "spanNulls": true
+              },
+              "unit": "short"
+            },
             "overrides": [
-              { "matcher": { "id": "byName", "options": "Errors" },   "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Warnings" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FADE2A", "mode": "fixed" } }] },
-              { "matcher": { "id": "byName", "options": "Info" },     "properties": [{ "id": "color", "value": { "fixedColor": "#F2495C", "mode": "fixed" } }] }
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Errors"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#F2495C",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Warnings"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FADE2A",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Info"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#B877D9",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
             ]
           },
           "targets": [
-            { "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"ERROR\" [2m]))", "legendFormat": "Errors",   "refId": "A" },
-            { "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"WARN\"  [2m]))", "legendFormat": "Warnings", "refId": "B" },
-            { "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"INFO\"  [2m]))", "legendFormat": "Info",     "refId": "C" }
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"ERROR\" [2m]))",
+              "legendFormat": "Errors",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"WARN\"  [2m]))",
+              "legendFormat": "Warnings",
+              "refId": "B"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"INFO\"  [2m]))",
+              "legendFormat": "Info",
+              "refId": "C"
+            }
           ]
         },
         {
-          "id": 702, "type": "stat", "title": "Errors (1h)",
-          "gridPos": { "x": 16, "y": 19, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"ERROR\" [1h]))", "refId": "A" }]
+          "id": 602,
+          "type": "stat",
+          "title": "Errors (1h)",
+          "gridPos": {
+            "x": 16,
+            "y": 18,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"ERROR\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 703, "type": "stat", "title": "Warnings (1h)",
-          "gridPos": { "x": 20, "y": 19, "w": 4, "h": 4 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
-          "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
-          "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"WARN\" [1h]))", "refId": "A" }]
+          "id": 603,
+          "type": "stat",
+          "title": "Warnings (1h)",
+          "gridPos": {
+            "x": 20,
+            "y": 18,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"WARN\" [1h]))",
+              "refId": "A"
+            }
+          ]
         },
         {
-          "id": 704, "type": "logs", "title": "Trainer — Live Logs",
-          "gridPos": { "x": 0, "y": 27, "w": 24, "h": 8 },
-          "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "dedupStrategy": "none", "showLabels": false, "showTime": true, "sortOrder": "Descending", "wrapLogMessage": true },
-          "targets": [{ "expr": "{container=\"fitlife_trainer\"}", "refId": "A" }]
+          "id": 604,
+          "type": "logs",
+          "title": "Livestream \u2014 Live Logs",
+          "gridPos": {
+            "x": 0,
+            "y": 26,
+            "w": 24,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "dedupStrategy": "none",
+            "showLabels": false,
+            "showTime": true,
+            "sortOrder": "Descending",
+            "wrapLogMessage": true
+          },
+          "targets": [
+            {
+              "expr": "{container=\"fitlife_livestream\"}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 700,
+      "type": "row",
+      "title": "Trainer",
+      "collapsed": true,
+      "gridPos": {
+        "x": 0,
+        "y": 18,
+        "w": 24,
+        "h": 1
+      },
+      "panels": [
+        {
+          "id": 701,
+          "type": "timeseries",
+          "title": "Trainer \u2014 Log Volume",
+          "gridPos": {
+            "x": 0,
+            "y": 19,
+            "w": 16,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi"
+            },
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 15,
+                "gradientMode": "opacity",
+                "spanNulls": true
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Errors"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#F2495C",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Warnings"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FADE2A",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Info"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#F2495C",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"ERROR\" [2m]))",
+              "legendFormat": "Errors",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"WARN\"  [2m]))",
+              "legendFormat": "Warnings",
+              "refId": "B"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"INFO\"  [2m]))",
+              "legendFormat": "Info",
+              "refId": "C"
+            }
+          ]
+        },
+        {
+          "id": 702,
+          "type": "stat",
+          "title": "Errors (1h)",
+          "gridPos": {
+            "x": 16,
+            "y": 19,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"ERROR\" [1h]))",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "id": 703,
+          "type": "stat",
+          "title": "Warnings (1h)",
+          "gridPos": {
+            "x": 20,
+            "y": 19,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"WARN\" [1h]))",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "id": 704,
+          "type": "logs",
+          "title": "Trainer \u2014 Live Logs",
+          "gridPos": {
+            "x": 0,
+            "y": 27,
+            "w": 24,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "dedupStrategy": "none",
+            "showLabels": false,
+            "showTime": true,
+            "sortOrder": "Descending",
+            "wrapLogMessage": true
+          },
+          "targets": [
+            {
+              "expr": "{container=\"fitlife_trainer\"}",
+              "refId": "A"
+            }
+          ]
         }
       ]
     }
-
   ]
 }
