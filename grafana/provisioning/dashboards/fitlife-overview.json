@@ -799,6 +799,11 @@
           "expr": "sum(count_over_time({container=\"fitlife_trainer\"}     |= \"ERROR\" [2m]))",
           "legendFormat": "Trainer",
           "refId": "F"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_membership\"}  |= \"ERROR\" [2m]))",
+          "legendFormat": "Membership",
+          "refId": "G"
         }
       ]
     },
@@ -850,7 +855,7 @@
       },
       "targets": [
         {
-          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer)\"} |= \"ERROR\" [1h]))",
+          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer|membership)\"} |= \"ERROR\" [1h]))",
           "refId": "A"
         }
       ]
@@ -903,7 +908,7 @@
       },
       "targets": [
         {
-          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer)\"} |= \"WARN\" [1h]))",
+          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer|membership)\"} |= \"WARN\" [1h]))",
           "refId": "A"
         }
       ]
@@ -1069,6 +1074,11 @@
           "expr": "sum(count_over_time({container=\"fitlife_trainer\"}     [2m]))",
           "legendFormat": "Trainer",
           "refId": "F"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_membership\"}  [2m]))",
+          "legendFormat": "Membership",
+          "refId": "G"
         }
       ]
     },
