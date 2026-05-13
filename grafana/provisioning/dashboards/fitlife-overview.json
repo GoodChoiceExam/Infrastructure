@@ -841,7 +841,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": null
               },
               {
@@ -1227,7 +1227,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -1472,7 +1472,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -1717,7 +1717,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -1962,7 +1962,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -2207,7 +2207,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -2452,7 +2452,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -2697,7 +2697,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
