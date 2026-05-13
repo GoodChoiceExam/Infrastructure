@@ -550,6 +550,95 @@
       ]
     },
     {
+      "id": 7,
+      "type": "stat",
+      "title": "Membership",
+      "description": "Active if logs received in the last 5 minutes",
+      "gridPos": {
+        "x": 0,
+        "y": 13,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "values": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "Offline",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 0
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Offline",
+                  "color": "red",
+                  "index": 1
+                }
+              }
+            },
+            {
+              "type": "range",
+              "options": {
+                "from": 1,
+                "to": 1000000000000000.0,
+                "result": {
+                  "text": "Online",
+                  "color": "green",
+                  "index": 2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_membership\"}[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
       "id": 10,
       "type": "timeseries",
       "title": "Error Rate \u2014 All Services",
@@ -2447,6 +2536,251 @@
           "targets": [
             {
               "expr": "{container=\"fitlife_trainer\"}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 800,
+      "type": "row",
+      "title": "Membership",
+      "collapsed": true,
+      "gridPos": {
+        "x": 0,
+        "y": 19,
+        "w": 24,
+        "h": 1
+      },
+      "panels": [
+        {
+          "id": 801,
+          "type": "timeseries",
+          "title": "Membership \u2014 Log Volume",
+          "gridPos": {
+            "x": 0,
+            "y": 20,
+            "w": 16,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi"
+            },
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 15,
+                "gradientMode": "opacity",
+                "spanNulls": true
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Errors"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#F2495C",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Warnings"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#FADE2A",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Info"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#73BF69",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_membership\"} |= \"ERROR\" [2m]))",
+              "legendFormat": "Errors",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_membership\"} |= \"WARN\"  [2m]))",
+              "legendFormat": "Warnings",
+              "refId": "B"
+            },
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_membership\"} |= \"INFO\"  [2m]))",
+              "legendFormat": "Info",
+              "refId": "C"
+            }
+          ]
+        },
+        {
+          "id": 802,
+          "type": "stat",
+          "title": "Errors (1h)",
+          "gridPos": {
+            "x": 16,
+            "y": 20,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_membership\"} |= \"ERROR\" [1h]))",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "id": 803,
+          "type": "stat",
+          "title": "Warnings (1h)",
+          "gridPos": {
+            "x": 20,
+            "y": 20,
+            "w": 4,
+            "h": 4
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "values": false
+            }
+          },
+          "fieldConfig": {
+            "defaults": {
+              "noValue": "0",
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          },
+          "targets": [
+            {
+              "expr": "sum(count_over_time({container=\"fitlife_membership\"} |= \"WARN\" [1h]))",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "id": 804,
+          "type": "logs",
+          "title": "Membership \u2014 Live Logs",
+          "gridPos": {
+            "x": 0,
+            "y": 28,
+            "w": 24,
+            "h": 8
+          },
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "options": {
+            "dedupStrategy": "none",
+            "showLabels": false,
+            "showTime": true,
+            "sortOrder": "Descending",
+            "wrapLogMessage": true
+          },
+          "targets": [
+            {
+              "expr": "{container=\"fitlife_membership\"}",
               "refId": "A"
             }
           ]
