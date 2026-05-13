@@ -112,7 +112,7 @@
       "gridPos": {
         "x": 4,
         "y": 0,
-        "w": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -199,9 +199,9 @@
       "title": "Classes",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 8,
+        "x": 7,
         "y": 0,
-        "w": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -288,7 +288,7 @@
       "title": "Community",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 12,
+        "x": 10,
         "y": 0,
         "w": 4,
         "h": 4
@@ -377,9 +377,9 @@
       "title": "Livestream",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 16,
+        "x": 14,
         "y": 0,
-        "w": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -466,7 +466,7 @@
       "title": "Trainer",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 20,
+        "x": 17,
         "y": 0,
         "w": 4,
         "h": 4
@@ -555,9 +555,9 @@
       "title": "Membership",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 0,
-        "y": 13,
-        "w": 4,
+        "x": 21,
+        "y": 0,
+        "w": 3,
         "h": 4
       },
       "datasource": {
