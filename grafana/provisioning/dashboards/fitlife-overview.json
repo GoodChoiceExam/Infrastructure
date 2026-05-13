@@ -16,7 +16,7 @@
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": { "x": 0, "y": 0, "w": 4, "h": 4 },
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
       "fieldConfig": {
         "defaults": {
           "noValue": "Offline",
@@ -37,7 +37,7 @@
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": { "x": 4, "y": 0, "w": 4, "h": 4 },
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
       "fieldConfig": {
         "defaults": {
           "noValue": "Offline",
@@ -58,7 +58,7 @@
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": { "x": 8, "y": 0, "w": 4, "h": 4 },
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
       "fieldConfig": {
         "defaults": {
           "noValue": "Offline",
@@ -79,7 +79,7 @@
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": { "x": 12, "y": 0, "w": 4, "h": 4 },
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
       "fieldConfig": {
         "defaults": {
           "noValue": "Offline",
@@ -100,7 +100,7 @@
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": { "x": 16, "y": 0, "w": 4, "h": 4 },
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
       "fieldConfig": {
         "defaults": {
           "noValue": "Offline",
@@ -121,7 +121,7 @@
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": { "x": 20, "y": 0, "w": 4, "h": 4 },
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
       "fieldConfig": {
         "defaults": {
           "noValue": "Offline",
@@ -173,7 +173,7 @@
       "id": 11, "type": "stat", "title": "Total Errors (1h)",
       "gridPos": { "x": 16, "y": 4, "w": 4, "h": 4 },
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "area", "textMode": "auto", "reduceOptions": { "calcs": ["sum"] } },
+      "options": { "colorMode": "background", "graphMode": "area", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
       "fieldConfig": {
         "defaults": {
           "color": { "mode": "thresholds" },
@@ -188,7 +188,7 @@
       "id": 12, "type": "stat", "title": "Total Warnings (1h)",
       "gridPos": { "x": 20, "y": 4, "w": 4, "h": 4 },
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-      "options": { "colorMode": "background", "graphMode": "area", "textMode": "auto", "reduceOptions": { "calcs": ["sum"] } },
+      "options": { "colorMode": "background", "graphMode": "area", "textMode": "auto", "reduceOptions": { "calcs": ["sum"], "values": false } },
       "fieldConfig": {
         "defaults": {
           "color": { "mode": "thresholds" },
@@ -258,7 +258,7 @@
           "id": 202, "type": "stat", "title": "Errors (1h)",
           "gridPos": { "x": 16, "y": 14, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"ERROR\" [1h]))", "refId": "A" }]
         },
@@ -266,7 +266,7 @@
           "id": 203, "type": "stat", "title": "Warnings (1h)",
           "gridPos": { "x": 20, "y": 14, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_identity\"} |= \"WARN\" [1h]))", "refId": "A" }]
         },
@@ -307,7 +307,7 @@
           "id": 302, "type": "stat", "title": "Errors (1h)",
           "gridPos": { "x": 16, "y": 15, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"ERROR\" [1h]))", "refId": "A" }]
         },
@@ -315,7 +315,7 @@
           "id": 303, "type": "stat", "title": "Warnings (1h)",
           "gridPos": { "x": 20, "y": 15, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_traininglog\"} |= \"WARN\" [1h]))", "refId": "A" }]
         },
@@ -356,7 +356,7 @@
           "id": 402, "type": "stat", "title": "Errors (1h)",
           "gridPos": { "x": 16, "y": 16, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"ERROR\" [1h]))", "refId": "A" }]
         },
@@ -364,7 +364,7 @@
           "id": 403, "type": "stat", "title": "Warnings (1h)",
           "gridPos": { "x": 20, "y": 16, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_classes\"} |= \"WARN\" [1h]))", "refId": "A" }]
         },
@@ -405,7 +405,7 @@
           "id": 502, "type": "stat", "title": "Errors (1h)",
           "gridPos": { "x": 16, "y": 17, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"ERROR\" [1h]))", "refId": "A" }]
         },
@@ -413,7 +413,7 @@
           "id": 503, "type": "stat", "title": "Warnings (1h)",
           "gridPos": { "x": 20, "y": 17, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_community\"} |= \"WARN\" [1h]))", "refId": "A" }]
         },
@@ -454,7 +454,7 @@
           "id": 602, "type": "stat", "title": "Errors (1h)",
           "gridPos": { "x": 16, "y": 18, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"ERROR\" [1h]))", "refId": "A" }]
         },
@@ -462,7 +462,7 @@
           "id": 603, "type": "stat", "title": "Warnings (1h)",
           "gridPos": { "x": 20, "y": 18, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_livestream\"} |= \"WARN\" [1h]))", "refId": "A" }]
         },
@@ -503,7 +503,7 @@
           "id": 702, "type": "stat", "title": "Errors (1h)",
           "gridPos": { "x": 16, "y": 19, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"ERROR\" [1h]))", "refId": "A" }]
         },
@@ -511,7 +511,7 @@
           "id": 703, "type": "stat", "title": "Warnings (1h)",
           "gridPos": { "x": 20, "y": 19, "w": 4, "h": 4 },
           "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
-          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"] } },
+          "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["sum"], "values": false } },
           "fieldConfig": { "defaults": { "noValue": "0", "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }] } } },
           "targets": [{ "expr": "sum(count_over_time({container=\"fitlife_trainer\"} |= \"WARN\" [1h]))", "refId": "A" }]
         },
