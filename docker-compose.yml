@@ -115,6 +115,7 @@ services:
       - Jwt__Issuer=fitlife-identity
       - Jwt__Audience=fitlife
       - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
+      - LOKI_ENDPOINT=http://loki:3100
     depends_on:
       - mongodb
       - identity
@@ -180,6 +181,7 @@ services:
       - Jwt__Issuer=fitlife-identity
       - Jwt__Audience=fitlife
       - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
+      - LOKI_ENDPOINT=http://loki:3100
     depends_on:
       - mongodb
       - identity
