@@ -149,7 +149,7 @@ services:
     environment:
       - MongoDB__ConnectionString=mongodb://traininglog_user:${TRAININGLOG_MONGO_PASSWORD}@mongodb:27017
       - MongoDB__DatabaseName=fitlife-traininglog
-      - Jwt__Authority=http://identity:8080
+      - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
       - Jwt__Audience=fitlife
       - LOKI_ENDPOINT=http://loki:3100
     depends_on:
