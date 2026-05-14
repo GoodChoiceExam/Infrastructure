@@ -46,3 +46,12 @@ jobs:
           docker exec fitlife_vault vault operator unseal -address=http://localhost:8200 ${{ secrets.VAULT_UNSEAL_KEY_1 }}
           docker exec fitlife_vault vault operator unseal -address=http://localhost:8200 ${{ secrets.VAULT_UNSEAL_KEY_2 }}
           docker exec fitlife_vault vault operator unseal -address=http://localhost:8200 ${{ secrets.VAULT_UNSEAL_KEY_3 }}
+
+      - name: Purge Cloudflare CSS cache
+        shell: powershell
+        run: |
+          $body = '{"files":["https://goodchoice.cc/css/app.css","https://goodchoice.cc/css/app.min.css"]}'
+          Invoke-RestMethod -Uri "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" `
+            -Method POST `
+            -Headers @{ "Authorization" = "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"; "Content-Type" = "application/json" } `
+            -Body $body

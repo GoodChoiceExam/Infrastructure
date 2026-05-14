@@ -112,7 +112,7 @@
       "gridPos": {
         "x": 4,
         "y": 0,
-        "w": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -199,9 +199,9 @@
       "title": "Classes",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 8,
+        "x": 7,
         "y": 0,
-        "w": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -288,7 +288,7 @@
       "title": "Community",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 12,
+        "x": 10,
         "y": 0,
         "w": 4,
         "h": 4
@@ -377,9 +377,9 @@
       "title": "Livestream",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 16,
+        "x": 14,
         "y": 0,
-        "w": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -466,7 +466,7 @@
       "title": "Trainer",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 20,
+        "x": 17,
         "y": 0,
         "w": 4,
         "h": 4
@@ -555,9 +555,9 @@
       "title": "Membership",
       "description": "Active if logs received in the last 5 minutes",
       "gridPos": {
-        "x": 0,
-        "y": 13,
-        "w": 4,
+        "x": 21,
+        "y": 0,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -799,6 +799,11 @@
           "expr": "sum(count_over_time({container=\"fitlife_trainer\"}     |= \"ERROR\" [2m]))",
           "legendFormat": "Trainer",
           "refId": "F"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_membership\"}  |= \"ERROR\" [2m]))",
+          "legendFormat": "Membership",
+          "refId": "G"
         }
       ]
     },
@@ -836,7 +841,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": null
               },
               {
@@ -850,7 +855,7 @@
       },
       "targets": [
         {
-          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer)\"} |= \"ERROR\" [1h]))",
+          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer|membership)\"} |= \"ERROR\" [1h]))",
           "refId": "A"
         }
       ]
@@ -903,7 +908,7 @@
       },
       "targets": [
         {
-          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer)\"} |= \"WARN\" [1h]))",
+          "expr": "sum(count_over_time({container=~\"fitlife_(identity|traininglog|classes|community|livestream|trainer|membership)\"} |= \"WARN\" [1h]))",
           "refId": "A"
         }
       ]
@@ -1069,6 +1074,11 @@
           "expr": "sum(count_over_time({container=\"fitlife_trainer\"}     [2m]))",
           "legendFormat": "Trainer",
           "refId": "F"
+        },
+        {
+          "expr": "sum(count_over_time({container=\"fitlife_membership\"}  [2m]))",
+          "legendFormat": "Membership",
+          "refId": "G"
         }
       ]
     },
@@ -1217,7 +1227,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -1462,7 +1472,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -1707,7 +1717,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -1952,7 +1962,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -2197,7 +2207,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -2442,7 +2452,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
@@ -2687,7 +2697,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-red",
                     "value": null
                   },
                   {
