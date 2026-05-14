@@ -167,6 +167,10 @@ services:
       - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
       - Jwt__Audience=fitlife
       - LOKI_ENDPOINT=http://loki:3100
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
     depends_on:
       - mongodb
       - identity
@@ -186,6 +190,10 @@ services:
       - Jwt__Audience=fitlife
       - Jwt__JwksUrl=http://identity:8080/.well-known/jwks.json
       - LOKI_ENDPOINT=http://loki:3100
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=${RABBITMQ_USER}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
     depends_on:
       - mongodb
       - identity
